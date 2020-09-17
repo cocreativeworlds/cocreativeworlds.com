@@ -10,7 +10,10 @@
   <body>
     <h1>Co Creative Worlds</h1>
     <p>Coming soon&hellip;</p>
-    <menu id="posts"></menu>
+    <menu>
+      <h2>Posts</h2>
+      <ul id="posts"></ul>
+    </menu>
 
     <script>
       !(function () {
@@ -20,8 +23,16 @@
           var $posts = document.getElementById("posts");
           if (!$posts) return;
           window.POSTS = window.POSTS || [];
-          for (var i = 0; i < window.POSTS.length; i++) {
-            html += window.POSTS[i] + "<br />";
+          for (var i = 0, html = ""; i < window.POSTS.length; i++) {
+            var post = window.POSTS[i];
+            var year = post.slice(0, 4);
+            var url = "./" + year + "/" + post + ".html";
+            var titleLowercase = "-" + post.split("--").pop();
+            var title = titleLowercase.replace(
+              /-([a-z])/g,
+              function (orig, match) { return " " + match.toUpperCase(); }
+            ).slice(1);
+            html += '<li><a href="' + url + '">' + title + "</a></li>";
           }
           $posts.innerHTML = html;
         });
