@@ -3,10 +3,29 @@
   <head>
     <title>Co Creative Worlds</title>
     <meta charset="UTF-8" />
+
+    <script src="./2020/index.js"></script>
   </head>
 
   <body>
     <h1>Co Creative Worlds</h1>
     <p>Coming soon&hellip;</p>
+    <menu id="posts"></menu>
+
+    <script>
+      !(function () {
+        if (typeof window !== "object") return;
+        window.addEventListener("load", function () {
+          if (typeof document !== "object") return;
+          var $posts = document.getElementById("posts");
+          if (!$posts) return;
+          window.POSTS = window.POSTS || [];
+          for (var i = 0; i < window.POSTS.length; i++) {
+            html += window.POSTS[i] + "<br />";
+          }
+          $posts.innerHTML = html;
+        });
+      })();
+    </script>
   </body>
 </html>
