@@ -1,11 +1,8 @@
 // 2020/index.js
-// Adds a list of all posts made in 2020 to the global POSTS array.
+// Send metadata about all 2020 posts to the global addPosts() function.
 
-function init() {
-  if (typeof window !== "object") return;
-  if (typeof window.onScriptLoad !== "function") return;
-  window.POSTS = window.POSTS || [];
-  window.POSTS = window.POSTS.concat([
+if (typeof window === "object" && typeof window.addPosts === "function") {
+  window.addPosts([
     {
       author: "Rich Plastow",
       day: 20200914,
@@ -21,8 +18,6 @@ function init() {
       inscription: "Another Title in Here",
       keywords: "short-read, test, foo",
       synopsis: "Another short intro or synopsis."
-    },
+    }
   ]);
-  window.onScriptLoad();
 }
-init();

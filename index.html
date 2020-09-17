@@ -3,7 +3,7 @@
   <head>
     <title>Co Creative Worlds</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -15,23 +15,25 @@
     </menu>
 
     <script>
-      function renderMenu() {
-        if (typeof document !== "object") return;
-        var $posts = document.getElementById("posts");
-        if (!$posts) return;
-        window.POSTS = window.POSTS || [];
-        for (var i = 0, html = ""; i < window.POSTS.length; i++) {
-          var post = window.POSTS[i];
-          var year = post.id.slice(0, 4);
-          var url = "./" + year + "/" + post.id + ".html";
-          html += '<li><a href="' + url + '">' + post.inscription + "</a></li>";
-        }
-        $posts.innerHTML = html;
-      }
-      var scriptsToLoad = 1;
-      window.onScriptLoad = function () {
-        if (--scriptsToLoad === 0) renderMenu();
-      };
+      window.addPosts = (function () {
+        var posts = [];
+        return function (newPosts) {
+          posts = posts.concat(newPosts).sort(function (a, b) {
+            return a.day > b.day ? 1 : -1;
+          });
+          if (typeof document !== "object") return;
+          var $posts = document.getElementById("posts");
+          if (!$posts) return;
+          for (var i = 0, html = ""; i < posts.length; i++) {
+            var post = posts[i];
+            var year = post.id.slice(0, 4);
+            var url = "./" + year + "/" + post.id + ".html";
+            html +=
+              '<li><a href="' + url + '">' + post.inscription + "</a></li>";
+          }
+          $posts.innerHTML = html;
+        };
+      })();
     </script>
     <script src="2020/index.js"></script>
   </body>
