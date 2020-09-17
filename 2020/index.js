@@ -16,7 +16,7 @@ if (typeof window === "object" && typeof window.addPosts === "function") {
       day: 20200917,
       id: "20200917-another-title-in-here",
       inscription: "Another Title in Here",
-      keywords: "short-read, test, foo",
+      keywords: "long-read, test, bar",
       synopsis: "Another short intro or synopsis."
     }
   ]);

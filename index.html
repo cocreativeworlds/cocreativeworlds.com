@@ -19,7 +19,7 @@
         var posts = [];
         return function (newPosts) {
           posts = posts.concat(newPosts).sort(function (a, b) {
-            return a.day > b.day ? 1 : -1;
+            return a.day > b.day ? -1 : 1;
           });
           if (typeof document !== "object") return;
           var $posts = document.getElementById("posts");
@@ -35,6 +35,7 @@
         };
       })();
     </script>
+    <script src="2019/index.js"></script>
     <script src="2020/index.js"></script>
   </body>
 </html>
